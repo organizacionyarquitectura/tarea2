@@ -1,0 +1,95 @@
+% Tipo de documento 
+\documentclass{article}
+
+% Idioma
+\usepackage[spanish]{babel}
+
+% Márgenes amplios
+\usepackage[margin = 1.5cm]{geometry}
+
+% Algunos comandos pra trabajar con ecuaciones (alinear)
+\usepackage{amsmath}
+
+\begin{document}
+    % Título
+    \title{Organización y Arquitectura de Computadoras \\
+    \large 2912-2 \\
+    \large Sistemas numéricos}
+
+    \date{Fecha de entrega: 15 de febrero del 2019}
+
+    \author{Edgar Quiroz Castañeda}  
+
+    \maketitle
+    
+    % Ejercicios
+    \section{Conversiones}
+    Realiza las siguientes transformaciones
+    \begin{enumerate}
+        \item {
+            $101110011_2 \rightarrow_{16} \rightarrow_{10}$
+            \begin{itemize}
+                \item {
+                    $\rightarrow_{16}$ \\
+                    Agrupando por grupos de cuatro dígitos, tenemos que 
+                    \begin{align*}
+                        0011_2 &= 3_{16} \\
+                        0111_2 &= 7_{16} \\
+                        0001_2 &= 1_{16}
+                    \end{align*}
+                    Por lo que $101110011_2 \rightarrow_{16} 173_{16}$
+                }
+                \item {
+                    $\rightarrow_{10}$\\
+                    \begin{align*}
+                        101110011_2 &= (2^8 + 2^6 + 2^5 + 2^4 + 2^1 + 2^0)_{10} \\
+                                    &= (256+64+32+16+2+1)_{10} = 
+                    \end{align*}
+
+                }
+            \end{itemize}
+        }
+        \item {
+            $347_8 \rightarrow_2 \rightarrow_10$
+        }
+        \item {
+            $45AF_16 \rightarrow_8 \rightarrow_10$
+        }
+    \end{enumerate}
+
+    \section{Números negativos}
+    Transforma los siguientes números a su representaciones en signo y magnitud,
+    complemento a 1, complemento a 2 y exceso a 128.
+
+    \begin{enumerate}
+        \item {
+            87
+        }
+        \item {
+            -34
+        }
+        \item {
+            21
+        }
+        \item {
+            -53
+        }
+    \end{enumerate}
+
+    \section{Números de punto flotante}
+    \begin{enumerate}
+        \item {
+            Obtén los 32 bits a partir de número 12.358
+        }
+        \item {
+            Obtén los 32 bits a partir de número 0.1592
+        }
+        \item {
+            Encuentra el número decimal a partir de 
+            01000010010011001101001010001001
+        }
+        \item {
+            Encuentra el número decimal a partir de 0xbefbda51
+        }
+    \end{enumerate}
+\end{document}
