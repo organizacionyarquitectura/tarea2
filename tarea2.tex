@@ -7,8 +7,11 @@
 % Márgenes amplios
 \usepackage[margin = 1.5cm]{geometry}
 
-% Algunos comandos pra trabajar con ecuaciones (alinear)
+% Algunos comandos para trabajar con ecuaciones (alinear)
 \usepackage{amsmath}
+
+% Colores (para las partes del número con punto flotante)
+\usepackage{xcolor}
 
 \begin{document}
     % Título
@@ -40,20 +43,79 @@
                     Por lo que $101110011_2 \rightarrow_{16} 173_{16}$
                 }
                 \item {
-                    $\rightarrow_{10}$\\
+                    $\rightarrow_{10}$
                     \begin{align*}
                         101110011_2 &= (2^8 + 2^6 + 2^5 + 2^4 + 2^1 + 2^0)_{10} \\
-                                    &= (256+64+32+16+2+1)_{10} = 
+                                    &= (256+64+32+16+2+1)_{10} \\
+                                    &= 371_{10}
                     \end{align*}
 
                 }
             \end{itemize}
         }
         \item {
-            $347_8 \rightarrow_2 \rightarrow_10$
+             $347_8 \rightarrow_2 \rightarrow_{10}$
+            \begin{itemize}
+                \item {
+                    $\rightarrow_{2}$ \\
+                    Llevando a cada dígito a su representación binaria de tres dígitos, 
+                    tenemos que 
+                    \begin{align*}
+                        7_{8} &= 111_{2} \\
+                        4_{8} &= 100_{2} \\
+                       3_{8} &= 011_{2}
+                     \end{align*}
+                    Por lo que $347_8 \rightarrow_2 011100111_{2}$
+                }
+                \item {
+                    $\rightarrow_{10}$
+                    \begin{align*}
+                        347_{8} &= (3 \times 8^2 + 4 \times 8^1 + 7 \times 8^0)_{10} \\
+                                    &= (3 \times 64 + 4 \times 8 + 7)_{10} \\
+                                    &= (192 + 32 + 7) \\
+                                    &= 231
+                    \end{align*}
+
+                }
+            \end{itemize}
         }
         \item {
-            $45AF_16 \rightarrow_8 \rightarrow_10$
+            $45AF_{16} \rightarrow_8 \rightarrow_{10}$
+            \begin{itemize}
+                \item {
+                    $\rightarrow_8$ \\
+                    Como paso intermedio, se pasa el número primero a binario.\\
+                    Entonces, llevando a cada dígito a su representación 
+                    binaria de cuatro dígitos, tenemos que 
+                    \begin{align*}
+                        4 &= 0100 \\
+                        5 &= 0101 \\
+                        A &= 1010 \\
+                        F &= 1111
+                    \end{align*}
+                    Por lo que $45AF_{16} = 0100010110101111_{2}$. \\
+                    Luego, agrupando por grupos de tres dígitos,
+                    \begin{align*}
+                        111_{2} &= 7_{8} \\
+                        101_{2} &= 5_{8} \\
+                        110_{2} &= 6_{8} \\
+                        010_{2} &= 2_{8} \\
+                        100_{2} &= 4_{8}
+                    \end{align*}
+                    Por lo que $45AF_{16} = 0100010110101111_{2} = 42657_{8}$
+                }
+                \item {
+                    $\rightarrow_{10}$
+                    \begin{align*}
+                        45AF_{16} &= (4 \times 16^3 + 5 \times 16^2
+                        + 10 \times 16^1 + 15 \times 16^0)_{10} \\
+                                    &= (4 \times 4096 + 5 \times 256 
+                                    + 10 \times 16 + 15)_{10} \\
+                                    &= (16384 + 1280 + 160 + 15)_{10} \\
+                                    &= 17839    _{10}
+                    \end{align*}
+                }
+            \end{itemize}
         }
     \end{enumerate}
 
@@ -63,33 +125,324 @@
 
     \begin{enumerate}
         \item {
-            87
+            87 \\
+            Primero, hay que obtener la representación binaria
+            \begin{align*}
+                87 &= 43 \times 2 + 1 \\
+                43 &= 21 \times 2 + 1 \\
+                21 &= 10 \times 2 + 1 \\
+                10 &= 5 \times 2 + 0 \\
+                5 &= 2 \times 2 + 1 \\
+                2 &= 2 \times 1 + 0 \\
+                1 &= 0 \times 0 + 1
+            \end{align*}
+            Por lo que $87_{10} = 1010111_{2}$.\\
+            Las representaciones son 
+            \begin{itemize}
+                \item {
+                    Signo y magnitud \\
+                    Sólo hay que agregar un bit para el signo.
+                    \[r = 01010111\]
+                    }
+                \item {
+                    Complemento a 1 y 2\\
+                    Como el número es positivo, entonces ya está
+                    en su forma de complemento a 1 y 2.
+                    \[r = 1010111\]
+                    }
+                    \item {
+                    Exceso a 128
+                    \[r_{10} = 87 + 128 = 215\]
+                    Ahora hay que pasar eso a binario
+                    \begin{align*}
+                        215 &= 107 \times 2 + 1 \\
+                        107 &= 53 \times 2 + 1 \\
+                        53 &= 26 \times 2 + 1 \\
+                        26 &= 13 \times 2 + 1 \\
+                        13 &= 6 \times 2 + 1 \\
+                        6 &= 3 \times 2 + 0 \\
+                        3 &= 1 \times 2 + 1 \\
+                        1 &= 0 \times 2 + 1
+                    \end{align*}
+                    Entonces
+                    \[r = 11011111\]
+                    }
+            \end{itemize}
         }
         \item {
-            -34
+            -34 \\
+            Primero hay que pasar el número sin signo a binario.
+            \begin{align*}
+                34 &= 17 \times 2 + 0 \\
+                17 &= 8 \times 2 + 1 \\
+                8 &= 4 \times 2 + 0 \\
+                4 &= 2 \times 2 + 0 \\
+                2 &= 2 \times 1 + 0 \\
+                1 &= 0 \times 2 + 1
+            \end{align*}
+            Por lo que $34_{10} = 100010_{2}$
+            Las representaciones son 
+            \begin{itemize}
+                \item {
+                    Signo y magnitud \\
+                    Sólo hay que agregar un bit para el signo.
+                    \[r = 11010111\]
+                }
+                \item {
+                    Complemento a 1\\
+                    Como el número es negativo, hay invertir sus dígitos para 
+                    obtener su complemento.
+                    \[r = 0101000\]
+                }
+                \item {
+                    Complemento a 2\\
+                    Como el número es negativo, hay que encontrar su primer 1 
+                    desde la derecha e invertir todos los dígitos desde ese 
+                    punto para obtener su complemento. Como su primer dígito 
+                    desde la derecha es 1, entonces esto es lo mismo que 
+                    invertir todos sus dígitos.
+                    \[r = 0101000\]
+                }
+                \item {
+                    Exceso a 128
+                    \[r_{10} = -34 + 128 = 94\]
+                    Ahora hay que pasar eso a binario
+                    \begin{align*}
+                        94 &= 47 \times 2 + 0 \\
+                        47 &= 23 \times 2 + 1 \\
+                        23 &= 11 \times 2 + 1 \\
+                        11 &= 5 \times 2 + 1 \\
+                        5 &= 2 \times 2 + 1 \\
+                        2 &= 1 \times 2 + 0 \\
+                        1 &= 0 \times 2 + 1 
+                    \end{align*}
+                    Entonces
+                    \[r = 1011110\]
+                }
+            \end{itemize}
         }
         \item {
-            21
+            21 \\
+            Primero, hay que obtener la representación binaria
+            \begin{align*}
+                21 &= 10 \times 2 + 1 \\
+                10 &= 5 \times 2 + 0 \\
+                5 &= 2 \times 2 + 1 \\
+                2 &= 1 \times 2 + 0 \\
+                1 &= 0 \times 2 + 1 
+            \end{align*}
+            Por lo que $21_{10} = 10101_{2}$.\\
+            Las representaciones son 
+            \begin{itemize}
+                \item {
+                    Signo y magnitud \\
+                    Sólo hay que agregar un bit para el signo.
+                    \[r = 010101\]
+                    }
+                \item {
+                    Complemento a 1 y 2\\
+                    Como el número es positivo, entonces ya está
+                    en su forma de complemento a 1 y 2.
+                    \[r = 10101\]
+                    }
+                    \item {
+                    Exceso a 128
+                    \[r_{10} = 21 + 128 = 139\]
+                    Ahora hay que pasar eso a binario
+                    \begin{align*}
+                        139 &= 69 \times 2 + 1 \\
+                        69 &= 34 \times 2 + 1 \\
+                        34 &= 19 \times 2 + 0 \\
+                        19 &= 9 \times 2 + 1 \\
+                        9 &= 4 \times 2 + 1 \\
+                        4 &= 2 \times 2 + 0 \\
+                        2 &= 1 \times 2 + 0 \\
+                        1 &= 0 \times 2 + 1
+                    \end{align*}
+                    Entonces
+                    \[r = 10011011\]
+                    }
+            \end{itemize}
         }
         \item {
-            -53
+            -53 \\
+            Primero hay que pasar el número sin signo a binario.
+            \begin{align*}
+                53 &= 26 \times 2 + 1 \\
+                26 &= 13 \times 2 + 0 \\
+                13 &= 6 \times 2 + 1 \\
+                6 &= 3 \times 2 + 0 \\
+                3 &= 1 \times 2 + 1 \\
+                1 &= 0 \times 2 + 1
+            \end{align*}
+            Por lo que $53_{10} = 110101_{2}$. \\
+            Las representaciones son 
+            \begin{itemize}
+                \item {
+                    Signo y magnitud \\
+                    Sólo hay que agregar un bit para el signo.
+                    \[r = 1110101\]
+                }
+                \item {
+                    Complemento a 1\\
+                    Como el número es negativo, hay invertir sus dígitos para 
+                    obtener su complemento.
+                    \[r = 001010\]
+                }
+                \item {
+                    Complemento a 2\\
+                    Como el número es negativo, hay que encontrar su primer 1 
+                    desde la derecha e invertir todos los dígitos desde ese 
+                    punto para obtener su complemento. Como su primer dígito 
+                    desde la derecha es 1, entonces esto es lo mismo que 
+                    invertir todos sus dígitos.
+                    \[r = 001010\]
+                }
+                \item {
+                    Exceso a 128
+                    \[r_{10} = -53 + 128 = 75\]
+                    Ahora hay que pasar eso a binario
+                    \begin{align*}
+                        75 &= 37 \times 2 + 1 \\
+                        37 &= 18 \times 2 + 1 \\
+                        18 &= 9 \times 2 + 0 \\
+                        9 &= 4 \times 2 + 1 \\
+                        4 &= 2 \times 2 + 0 \\
+                        2 &= 1 \times 2 + 0 \\
+                        1 &= 0 \times 2 + 1 
+                    \end{align*}
+                    Entonces
+                    \[r = 1001011\]
+                }
+            \end{itemize}
         }
     \end{enumerate}
 
     \section{Números de punto flotante}
     \begin{enumerate}
         \item {
-            Obtén los 32 bits a partir de número 12.358
+            Obtén los 32 bits a partir de número 12.358 \\
+            Primero hay que pasar la parte entera a binario
+            \begin{align*}
+                12 &= 6 \times 2 + 0 \\
+                6 &= 3 \times 2 + 0 \\
+                3 &= 1 \times 2 + 1 \\
+                1 &= 0 \times 2 + 1
+            \end{align*}
+            Por lo que $12_{10} = 1100_{2}$.\\
+            Ahora hay que pasar la parte decimal a binario. Por simplicidad, hay
+            que aproximarlo sólo a 5 decimales.
+            \begin{align*}
+                0.358 \times 2 &= 0.716 \\
+                0.716 \times 2 &= 1.432 \\
+                0.432 \times 2 &= 0.864 \\
+                0.864 \times 2 &= 1.728 \\
+                0.728 \times 2 &= 1.456
+            \end{align*}
+            Por lo que $12.458_{10} \approx 1100.01011_{2} 
+            = 1.10001011_{2} \times 2 ^ 3$.\\
+            Luego, hay que encontrar el valor en binario del exponente con exceso
+            a 127.
+            \begin{align*}
+                3 + 127 &= 130 \\
+                130 &= 65 \times 2 + 0 \\
+                65 &= 32 \times 2 + 1 \\
+                32 &= 16 \times 2 + 0 \\
+                16 &= 8 \times 2 + 0 \\
+                8 &= 4 \times 2 + 0 \\
+                4 &= 2 \times 2 + 0 \\
+                2 &= 1 \times 2 + 0 \\
+                1 &= 0 \times 2 + 1
+            \end{align*}
+            Por lo que $130_{10} = 10000010_{2}$ \\
+            Y como es potivo, el bit del signo es 0. \\
+            Por lo que la representación en 32 bits es
+            \[r = {\color{red}0}{\color{green}10000010}
+            {\color{blue}10001011000000000000000}\]
         }
         \item {
-            Obtén los 32 bits a partir de número 0.1592
+            Obtén los 32 bits a partir de número 0.1592 \\
+            Hay que pasar la parte decimal a binario. Por simplicidad, hay
+            que aproximarlo sólo a 5 decimales.
+            \begin{align*}
+                0.1592 \times 2 &= 0.3184 \\
+                0.3184 \times 2 &= 0.6368 \\
+                0.6368 \times 2 &= 1.2736 \\
+                0.2736 \times 2 &= 0.5472 \\
+                0.5472 \times 2 &= 1.0.944
+            \end{align*}
+            Por lo que $0.1592_{10} \approx 0.00101_{2} 
+            = 1.01_{2} \times 2 ^ {-3}$.\\
+            Luego, hay que encontrar el valor en binario del exponente con exceso
+            a 127.
+            \begin{align*}
+                -3 + 127 &= 124 \\
+                124 &= 62 \times 2 + 0 \\
+                62 &= 31 \times 2 + 0 \\
+                31 &= 15 \times 2 + 1 \\
+                15 &= 7 \times 2 + 1 \\
+                7 &= 3 \times 2 + 1 \\
+                3 &= 1 \times 2 + 1 \\
+                1 &= 0 \times 2 + 1
+            \end{align*}
+            Por lo que $124_{10} = 1111100_{2}$ \\
+            Y como es positivo, el bit del signo es 0. \\
+            Por lo que la representación en 32 bits es
+            \[r = {\color{red}0}{\color{green}01111100}
+            {\color{blue}01000000000000000000000}\]
         }
         \item {
             Encuentra el número decimal a partir de 
-            01000010010011001101001010001001
+            01000010010011001101001010001001\\
+            Como el primer dígito es 0, es positivo. Como la mantisa es 
+            10000100, entonces el exponente es $10000100_{2} -127_{10} 
+            = (132 - 127)_{10} = 5_{10}$.\\
+            Por lo que el número es
+            \[1.10011001101001010001001 \times 2 ^ 5 = 110011.001101001010001001\]
+            Y esto en decimal es
+            \begin{align*}
+                 &= 
+                2^5 + 2^4 + 2^1 + 2^0 + 2^{-3} + 2^{-4} + 2^{-6} + 2^{-9} 
+                + 2^{-11} + 2^{-15} + 2^{-18} \\
+                &= 32 + 16 + 2 + 1 + 0.125 + 0.625 + 0.015625 + 0.001953125 \\ 
+                &+ 0.00048828125 + 0.000030517578125 + 0.000003814697265625 \\
+                &= 51.205600738525390625
+            \end{align*}
+            
         }
         \item {
-            Encuentra el número decimal a partir de 0xbefbda51
+            Encuentra el número decimal a partir de 0xbefbda51.\\
+            Hay que pasar el número a binario, agrupando por grupos de 4 dígitos.
+            \begin{align*}
+                b &= 1011 \\
+                e &= 1110 \\
+                f &= 1111 \\
+                b &= 1011 \\
+                d &= 1101 \\
+                a &= 1010 \\
+                5 &= 0101 \\
+                1 &= 0001
+            \end{align*}
+            Por lo que 0xbefbda51 = 10111110111110111101101001010001. \\
+            Como el primer dígito es 1, es negativo. Como la mantisa es 
+            01111101, entonces el exponente es $01111101_{2} -127_{10} 
+            = (125 - 127)_{10} = -2_{10}$. \\
+            Por lo que el número es 
+            \[-1.11110111101101001010001 \times 2 ^ {-2} 
+            = -0.0111110111101101001010001\]
+            Que en decimal es
+            \begin{align*}
+                &= -(2^{-2} +  2^{-3} +  2^{-4} +  2^{-5} +  2^{-6} 
+                +  2^{-8} +  2^{-9} +  2^{-10} +  2^{-11} +  2^{-13} 
+                +  2^{-14} +  2^{-16} +  2^{-19} +  2^{-21} +  2^{-25}) \\
+                &= -(0.25 + 0.125 + 0.0625 + 0.03125 + 0.015625 + 0.00390625 
+                + 0.001953125 + 0.0009765625 \\
+                &+ 0.00048828125 + 0.0001220703125 
+                + 0.00006103515625 + 0.0000152587890625 \\
+                &+ 0.0000019073486328125 + 0.000000476837158203125 
+                + 0.00000002980232238769531250) \\
+                &= -0.4918999969959259033203125
+            \end{align*}
         }
     \end{enumerate}
 \end{document}
